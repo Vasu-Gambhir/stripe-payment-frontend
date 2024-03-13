@@ -1,0 +1,135 @@
+.home {
+  padding: 60px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+.home .headline {
+  text-align: center;
+  padding-bottom: 50px;
+  width: 90%;
+  margin: 0 auto;
+}
+.home .headline h1 {
+  position: relative;
+  padding-bottom: 10px;
+}
+.home .headline h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 100px;
+  background-color: var(--color-2);
+}
+
+.banner {
+  position: relative;
+}
+.banner .carousel-img-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+.banner .carousel-img {
+  width: 100%;
+}
+.banner .carousel-control-next, .banner .carousel-control-prev {
+  width: 6%;
+  height: 50%;
+}
+.banner .carousel-control-next-icon, .banner .carousel-control-prev-icon {
+  width: 3em;
+  height: 4em;
+}
+.carousel-control-next, .carousel-control-prev {
+  top: 25% !important;
+}
+
+.stripe-payment-container{
+  margin-top: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  width:100%;
+  height: 70vh;
+}
+
+.stripe-payment-container-inner{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid rgb(129, 128, 128);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  flex-direction: column;
+}
+
+.stripe-payment-header{
+  width: 80%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-top: 15px;
+  flex-direction: column;
+}
+
+.stripe-payment-image-container{
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+}
+
+.stripe-payment-image{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.stripe-payment-heading{
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-top: 15px;
+}
+
+.stripe-payment-inputs{
+  width: 80%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.stripe-payment-input{
+  width: 100%;
+  height: 20%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.stripe-payment-button-container{
+  width: 80%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 575px) {
+  .banner .carousel-img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .banner .carousel-img {
+    width: 135%;
+  }
+}
+
