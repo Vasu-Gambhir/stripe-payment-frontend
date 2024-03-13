@@ -43,7 +43,7 @@ const Navbar = () => {
 
   const getDetailValidUser = async () => {
     try{
-    const res = await axios.get(`http://localhost:8000/validuser`, {
+    const res = await axios.get(`https://vasu-gambhir-stripe-payment-backend.vercel.app/validuser`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Navbar = () => {
   // Logout 
 
   const logOutUser = async () => {
-    const res2 = await axios.get(`http://localhost:8000/logout`, {
+    const res2 = await axios.get(`https://vasu-gambhir-stripe-payment-backend.vercel.app/logout`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

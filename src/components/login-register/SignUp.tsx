@@ -35,7 +35,7 @@ const SignUp = () => {
     const { name, mobile, email, password, cpassword } = signUpInfo;
 
     try {
-      const res = await axios.post('http://localhost:8000/register', { 
+      const res = await axios.post('https://vasu-gambhir-stripe-payment-backend.vercel.app/register', { 
         name, mobile, email, password, cpassword
       }, {
         headers: {

@@ -56,7 +56,7 @@ export const Home = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        "http://localhost:8000/create-checkout-session",
+        "https://vasu-gambhir-stripe-payment-backend.vercel.app/create-checkout-session",
         {
           ...account, inputs
         },
