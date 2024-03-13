@@ -1,10 +1,11 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import "./login-register.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert/Alert";
 import AlertTitle from "@mui/material/AlertTitle/AlertTitle";
 import { useLoginContext } from "../context/ContextProvider";
 import axios from "axios";
+import { baseURL } from "../../helper";
 
 const SignIn = () => {
   const [signInInfo, setSignInInfo] = useState({
@@ -14,7 +15,7 @@ const SignIn = () => {
 
   const { account, setAccount } = useLoginContext();
 
-  function formUpdate(e:any) {
+  function formUpdate(e: any) {
     const { name, value } = e.target;
 
     setSignInInfo(function () {
@@ -28,13 +29,13 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState<any>([]);
   const navigate = useNavigate();
 
-  async function sendData(e:any) {
+  async function sendData(e: any) {
     e.preventDefault();
     const { email, password } = signInInfo;
 
     try {
       const res = await axios.post(
-        "https://vasu-gambhir-stripe-payment-backend.vercel.app/login",
+        `${baseURL}/login`,
         {
           email,
           password,
@@ -55,15 +56,15 @@ const SignIn = () => {
           password: "",
         };
       });
-//@ts-ignore
+      //@ts-ignore
       document.querySelector(".error-alert").style.display = "none";
-//@ts-ignore
+      //@ts-ignore
       document.querySelector(".success-alert").style.display = "flex";
 
       setTimeout(function () {
         navigate("/");
       }, 1000);
-    } catch (error:any) {
+    } catch (error: any) {
       try {
         //@ts-ignore
         document.querySelector(".success-alert").style.display = "none";
@@ -95,7 +96,7 @@ const SignIn = () => {
       >
         <AlertTitle className="alert-title">There were some errors</AlertTitle>
         <ul>
-          {errorMessage.map(function (error:string, index:number) {
+          {errorMessage.map(function (error: string, index: number) {
             return <li key={index}> {error} </li>;
           })}
         </ul>

@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import './Navbar.css';
-import axios from 'axios';
-import { NavLink, useNavigate } from 'react-router-dom';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import React, { useEffect, useState } from "react";
+import "./Navbar.css";
+import axios from "axios";
+import { NavLink, useNavigate } from "react-router-dom";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import { useLoginContext } from "../context/ContextProvider";
-
-
+import { baseURL } from "../../helper";
 
 const Navbar = () => {
-
   const [loginMsg, setLoginMsg] = useState("");
   const navigate = useNavigate();
   const { account, setAccount } = useLoginContext();
-  console.log(loginMsg)
-  console.log(account)
+  console.log(loginMsg);
+  console.log(account);
   // useEffect(function () {
   //   // Fetching user data
   //   async function fetchUser() {
@@ -39,48 +37,47 @@ const Navbar = () => {
   //   fetchUser();
   // }, [account, navigate])
 
-  console.log(account)
+  console.log(account);
 
   const getDetailValidUser = async () => {
-    try{
-    const res = await axios.get(`https://vasu-gambhir-stripe-payment-backend.vercel.app/validuser`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    });
+    try {
+      const res = await axios.get(`${baseURL}/validuser`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
 
-    if (res.status !== 201) {
-      navigate("/login");
-      // toast.error('Please Login First')
-    } 
-    else {
-      setAccount(res?.data);
-      const name = account?.userLogin?.name;
-      let fname;
-      if(name?.indexOf(' ') !== -1) {
-        fname = name.substring(0, name.indexOf(' '));}
-      else{
+      if (res.status !== 201) {
+        navigate("/login");
+        // toast.error('Please Login First')
+      } else {
+        setAccount(res?.data);
+        const name = account?.userLogin?.name;
+        let fname;
+        if (name?.indexOf(" ") !== -1) {
+          fname = name.substring(0, name.indexOf(" "));
+        } else {
           fname = name;
         }
-      setLoginMsg(fname);
+        setLoginMsg(fname);
+      }
+    } catch (error: any) {
+      if (error?.response?.status) {
+        navigate("/login");
+        toast.error("Please Login First");
+      }
     }
-  }catch(error:any){
-    if(error?.response?.status){
-      navigate("/login");
-      toast.error('Please Login First')
-    }
-  }
   };
 
   useEffect(() => {
     getDetailValidUser();
   }, [account?.userLogin?.name]);
-  // Logout 
+  // Logout
 
   const logOutUser = async () => {
-    const res2 = await axios.get(`https://vasu-gambhir-stripe-payment-backend.vercel.app/logout`, {
+    const res2 = await axios.get(`${baseURL}/logout`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -102,36 +99,30 @@ const Navbar = () => {
   return (
     <header>
       <nav>
-        <div className='navbar-left'>
-        <div className="logo">
-          <NavLink to="/">
-            <img src="images/logo-dark.png" alt="logo"/>
-          </NavLink>
-        </div>
+        <div className="navbar-left">
+          <div className="logo">
+            <NavLink to="/">
+              <img src="images/logo-dark.png" alt="logo" />
+            </NavLink>
+          </div>
 
-        <div className="navbar-tabs">
-          <NavLink to="/">
-            Home
-          </NavLink>
-          <NavLink to="/allTransactions">
-            Payment History
-          </NavLink>
-        </div>
+          <div className="navbar-tabs">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/allTransactions">Payment History</NavLink>
+          </div>
         </div>
 
         <div className="navbar-right">
-          <div className='display-name'>
-            Hello, {loginMsg}
-          </div>
+          <div className="display-name">Hello, {loginMsg}</div>
 
-          <div className='logout' onClick={logOutUser}>
-            <LogoutOutlinedIcon className='icon' /> <span>Sign Out</span>
+          <div className="logout" onClick={logOutUser}>
+            <LogoutOutlinedIcon className="icon" /> <span>Sign Out</span>
           </div>
         </div>
       </nav>
       <ToastContainer />
     </header>
-  )
-}
+  );
+};
 
 export default Navbar;

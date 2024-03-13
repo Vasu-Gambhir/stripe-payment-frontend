@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { CircularProgress } from "@mui/material";
+import { baseURL } from "../../helper";
 
 const AllTransactions = () => {
   const [allTransactions, setAllTransactions] = useState<any>([]);
@@ -18,15 +19,12 @@ const AllTransactions = () => {
     const getallTransactions = async () => {
       setIsLoading(true);
       try {
-        const res = await axios.get(
-          "https://vasu-gambhir-stripe-payment-backend.vercel.app/get-all-transactions",
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
+        const res = await axios.get(`${baseURL}/get-all-transactions`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
         if (res.status !== 201) {
           alert("Error : somwthing went wrong");
         } else {
