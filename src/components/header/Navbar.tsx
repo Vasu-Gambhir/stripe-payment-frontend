@@ -11,33 +11,6 @@ const Navbar = () => {
   const [loginMsg, setLoginMsg] = useState("");
   const navigate = useNavigate();
   const { account, setAccount } = useLoginContext();
-  console.log(loginMsg);
-  console.log(account);
-  // useEffect(function () {
-  //   // Fetching user data
-  //   async function fetchUser() {
-  //     try {
-  //       if (!account?.userLogin) {
-  //         navigate("/login");
-  //         toast.error('Please Login First')
-  //       } else {
-  //           const name = account?.userLogin?.name;
-  //           let fname;
-  //           if(name?.indexOf(' ') !== -1) {
-  //             fname = name.substring(0, name.indexOf(' '));}
-  //           else{
-  //               fname = name;
-  //             }
-  //           setLoginMsg(fname);
-  //       }
-  //     } catch (error) {
-  //       navigate("/login");
-  //     }
-  //   }
-  //   fetchUser();
-  // }, [account, navigate])
-
-  console.log(account);
 
   const getDetailValidUser = async () => {
     try {
@@ -87,7 +60,6 @@ const Navbar = () => {
     if (res2.status !== 201) {
       console.log("error");
     } else {
-      console.log("data valid log");
       toast.success("User Logged Out", {
         position: "top-center",
       });

@@ -18,7 +18,6 @@ export const Home = () => {
   // const baseUrl = currURL.substring(0, currURL.indexOf("?"));
   const status = currURL.slice(currURL.indexOf("?") + 1);
 
-  console.log(status);
   const { account, setAccount } = useLoginContext();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +67,6 @@ export const Home = () => {
         }
       );
       setIsLoading(false);
-      console.log(res.data);
       if (res.status !== 201) {
         alert("Error : somwthing went wrong");
       } else {
@@ -84,8 +82,6 @@ export const Home = () => {
       console.log(error);
     }
   };
-
-  console.log(inputs);
   return (
     <main>
       <div className="home">

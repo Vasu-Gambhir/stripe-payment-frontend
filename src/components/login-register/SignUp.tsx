@@ -50,7 +50,6 @@ const SignUp = () => {
           },
         }
       );
-      console.log(res);
       setSignUpInfo(function () {
         return {
           ...signUpInfo,

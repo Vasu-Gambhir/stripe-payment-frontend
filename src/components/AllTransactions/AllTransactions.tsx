@@ -30,14 +30,11 @@ const AllTransactions = () => {
         } else {
           setAllTransactions(res.data);
         }
-      } catch (error: any) {
-        console.log(error);
-      }
+      } catch (error: any) {}
       setIsLoading(false);
     };
     getallTransactions();
   }, []);
-  console.log(allTransactions);
 
   return (
     <div className="all-transacations-container">
