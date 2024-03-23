@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../../helper";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const Home = () => {
     [key: string]: string;
   }
   const currURL = window.location.href;
-  const baseUrl = currURL.substring(0, currURL.indexOf("?"));
+  // const baseUrl = currURL.substring(0, currURL.indexOf("?"));
   const status = currURL.slice(currURL.indexOf("?") + 1);
 
   console.log(status);
@@ -54,7 +55,7 @@ export const Home = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `${baseUrl}/create-checkout-session`,
+        `${baseURL}/create-checkout-session`,
         {
           ...account,
           inputs,
