@@ -37,7 +37,13 @@ const AllTransactions = () => {
   }, []);
 
   return (
-    <div className="all-transacations-container">
+    <div
+      className="all-transacations-container"
+      style={{
+        height: isLoading ? "100vh" : "100%",
+        marginTop: isLoading ? "0px" : "60px",
+      }}
+    >
       <div className="all-transactions-container-inner">
         <div className="headline">
           <h1>All Transactions</h1>
@@ -50,6 +56,7 @@ const AllTransactions = () => {
               <Table sx={{ minWidth: 1050 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
+                    <TableCell align="center">#</TableCell>
                     <TableCell align="center">Name</TableCell>
                     <TableCell align="center">Email</TableCell>
                     <TableCell align="center">Address</TableCell>
@@ -58,11 +65,14 @@ const AllTransactions = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {allTransactions.map((row: any) => (
+                  {allTransactions.map((row: any, index: any) => (
                     <TableRow
                       key={row.name}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
+                      <TableCell component="th" scope="row" align="center">
+                        {index + 1}
+                      </TableCell>
                       <TableCell component="th" scope="row" align="center">
                         {row?.billing_details?.name}
                       </TableCell>
